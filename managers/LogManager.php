@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class LogManager
+ * @author Matei Moisoiu
+ */
+
 class LogManager {
 
     public static $REGISTRY_KEY = "LogManager";

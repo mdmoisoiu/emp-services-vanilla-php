@@ -2,6 +2,7 @@
 /**
  * Employee.php
  * VO Class
+ * @author Matei Moisoiu
  */
 
 class Employee {

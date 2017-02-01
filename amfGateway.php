@@ -17,11 +17,6 @@ include_once("config/config.php");
 *  */
 require_once AMFPHP_SRC_DIR . 'ClassLoader.php';
 
-// 2.1 version
-// $config = new Amfphp_Core_Config();
-// $config->serviceFolderPaths = array(SERVICES_BASE_CLASS_PATH);
-// $config->pluginsConfig['AmfphpCustomClassConverter'] = array('customClassFolderPaths' => array(VO_BASE_CLASS_PATH));
-
 // 2.2 version
 $config = new Amfphp_Core_Config();
 $config->serviceFolders = array( SERVICES_BASE_CLASS_PATH );

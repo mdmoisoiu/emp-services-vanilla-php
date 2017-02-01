@@ -1,7 +1,7 @@
 <?php
 /**
  * EmployeeService.php
- * 
+ * @author Matei Moisoiu
  */
 
 include_once('BaseService.php');

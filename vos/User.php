@@ -2,6 +2,7 @@
 /**
  * User.php
  * VO Class
+ * @author Matei Moisoiu
  */
 
 include_once('User.php');

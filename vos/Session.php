@@ -3,6 +3,7 @@
  * Session.php
  * Contain session information
  * Class common to all applications
+ * @author Matei Moisoiu
  */
 
 class Session  {

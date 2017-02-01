@@ -4,7 +4,7 @@
  * site_config.php
  *
  * Configuration settings
- *
+ * @author Matei Moisoiu
  */
 
 #APP PATHS

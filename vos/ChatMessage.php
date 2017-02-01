@@ -2,6 +2,7 @@
 /**
  * ChatMessage.php
  * VO Class
+ * @author Matei Moisoiu
  */
 
 class ChatMessage {

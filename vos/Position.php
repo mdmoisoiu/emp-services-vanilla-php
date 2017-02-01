@@ -2,6 +2,7 @@
 /**
  * Position.php
  * VO Class
+ * @author Matei Moisoiu
  */
 
 class Position {

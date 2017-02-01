@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Matei Moisoiu
+ */
 
 class UserRoles {
 

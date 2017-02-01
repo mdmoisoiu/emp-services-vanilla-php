@@ -1,7 +1,7 @@
 <?php
 /**
  * ImageDAO.php
- * 
+ * @author Matei Moisoiu
  */
 
 include_once('BaseDAO.php');

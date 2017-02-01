@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class PositionManager
+ * @author Matei Moisoiu
+ */
+
 
 class PositionManager {
 
