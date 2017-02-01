@@ -26,15 +26,15 @@ class Registry {
         return Registry::$registry;
     }
     
-	/**
-	 * @param $key string
-	 * @return mixed
-	 */
-	static function get($key) {
-		$res = null;
-		if(!$res){
-			$registry = Registry::getRegistry();
-			switch($key){
+    /**
+     * @param $key string
+     * @return mixed
+     */
+    static function get($key) {
+        $res = null;
+        if(!$res){
+            $registry = Registry::getRegistry();
+            switch($key){
                 case self::$PDO_REGISTRY_KEY:
                     $res = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
                     break;
@@ -48,38 +48,38 @@ class Registry {
                 case LogManager::$REGISTRY_KEY:
                     $res = new LogManager();
                     break;
-				case CountryDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new CountryDAO($da);
-					break;
-				case EmployeeDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new EmployeeDAO($da);
-					break;
-				case ImageDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new ImageDAO($da);
-					break;
-				case PositionDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new PositionDAO($da);
-					break;
-				case ChatMessageDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new ChatMessageDAO($da);
-					break;
+                case CountryDAO::$REGISTRY_KEY:
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new CountryDAO($da);
+                    break;
+                case EmployeeDAO::$REGISTRY_KEY:
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new EmployeeDAO($da);
+                    break;
+                case ImageDAO::$REGISTRY_KEY:
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new ImageDAO($da);
+                    break;
+                case PositionDAO::$REGISTRY_KEY:
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new PositionDAO($da);
+                    break;
+                case ChatMessageDAO::$REGISTRY_KEY:
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new ChatMessageDAO($da);
+                    break;
                 case UserDAO::$REGISTRY_KEY:
-					$da = Registry::get(Registry::$PDO_REGISTRY_KEY);
-					$res = new UserDAO($da);
-					break;
-				case PositionManager::$REGISTRY_KEY:
-					$res = new PositionManager();
-					break;
-			}
-			$registry[$key] = $res;
-		}
-		return $res;
-	}
+                    $da = Registry::get(Registry::$PDO_REGISTRY_KEY);
+                    $res = new UserDAO($da);
+                    break;
+                case PositionManager::$REGISTRY_KEY:
+                    $res = new PositionManager();
+                    break;
+            }
+            $registry[$key] = $res;
+        }
+        return $res;
+    }
 
 
     /**

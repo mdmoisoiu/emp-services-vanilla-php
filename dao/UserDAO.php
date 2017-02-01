@@ -10,15 +10,15 @@ include_once('User.php');
 
 class UserDAO extends BaseDAO {
 
-	public static $REGISTRY_KEY = "UserDAO";
-	
+    public static $REGISTRY_KEY = "UserDAO";
+
     /**
     * Constructor
-	* @param DbAccess $da 
+    * @param DbAccess $da
     */
     function UserDAO( & $da ) {
-    	parent::BaseDAO($da);
-    	$this->tableName = "app_user";
+        parent::BaseDAO($da);
+        $this->tableName = "app_user";
     }
     
     /**
@@ -27,14 +27,14 @@ class UserDAO extends BaseDAO {
      * @return User|null
      */
     public function getUserById($id){
-    	$user = null;
-    	if($id!=null){
-    		$result = $this->getUsers($id);
-    		if(count($result)==1){
-    			$user = $result[0];
-    		}
-    	}
-    	return $user;
+        $user = null;
+        if($id!=null){
+            $result = $this->getUsers($id);
+            if(count($result)==1){
+                $user = $result[0];
+            }
+        }
+        return $user;
     }
     
     /**
@@ -43,40 +43,40 @@ class UserDAO extends BaseDAO {
      * @return array of User
      */
     public function getUsers($id = null){
-    	$where = "WHERE 1";
-    	if($id!==null){
-    		$where .= sprintf(" AND id=%s", $this->da->quote($id));
-    	}
-    	
-    	$sql = sprintf("SELECT 
-    						id,
-    						first_name,
-    						last_name,
-    						email,
-    						username,
-    						password,
-    						role
-						FROM app_user
-						%s",
-    					$where
-    	);
-    	$rows = $this->da->query($sql);
-    	
-    	$users = array();
-    	foreach($rows as $row) {
-    		$val = new User();
-    		$val->id = $row["id"];
-    		$val->firstName = $row["first_name"];
-    		$val->lastName = $row["last_name"];
-    		$val->email = $row["email"];
-    		$val->username = $row["username"];
-    		$val->password = $row["password"];
-    		$val->role = $row["role"];
-    	
-    		$users []= $val;
-    	}
+        $where = "WHERE 1";
+        if($id!==null){
+            $where .= sprintf(" AND id=%s", $this->da->quote($id));
+        }
 
-    	return $users;
+        $sql = sprintf("SELECT 
+                            id,
+                            first_name,
+                            last_name,
+                            email,
+                            username,
+                            password,
+                            role
+                        FROM app_user
+                        %s",
+                        $where
+        );
+        $rows = $this->da->query($sql);
+
+        $users = array();
+        foreach($rows as $row) {
+            $val = new User();
+            $val->id = $row["id"];
+            $val->firstName = $row["first_name"];
+            $val->lastName = $row["last_name"];
+            $val->email = $row["email"];
+            $val->username = $row["username"];
+            $val->password = $row["password"];
+            $val->role = $row["role"];
+
+            $users []= $val;
+        }
+
+        return $users;
     }
     
     /**
@@ -86,20 +86,20 @@ class UserDAO extends BaseDAO {
      * @return number
      */
     public function getUserIdByCredentials($username, $password){
-    	$sql = sprintf("SELECT id
-						FROM app_user
-						WHERE (LOWER(email)=%s OR LOWER(username)=%s) AND password=%s",
-    					$this->da->quote(strtolower($username)),
-    					$this->da->quote(strtolower($username)),
-    					$this->da->quote($password)
-    	);
-    	$rows = $this->da->query($sql);
-    	$row = $rows->fetch();
-    	
-    	if ($row) {
-    		return $row['id'];
-    	}
-    	return 1;
+        $sql = sprintf("SELECT id
+                        FROM app_user
+                        WHERE (LOWER(email)=%s OR LOWER(username)=%s) AND password=%s",
+                        $this->da->quote(strtolower($username)),
+                        $this->da->quote(strtolower($username)),
+                        $this->da->quote($password)
+        );
+        $rows = $this->da->query($sql);
+        $row = $rows->fetch();
+
+        if ($row) {
+            return $row['id'];
+        }
+        return 1;
     }
 }
 ?>

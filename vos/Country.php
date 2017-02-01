@@ -5,11 +5,11 @@
  */
 
 class Country {
-	
-	public $id = 0;
-	public $name = ''; 
-	public $code = '';
-	
+
+    public $id = 0;
+    public $name = '';
+    public $code = '';
+
 }
 
 ?>

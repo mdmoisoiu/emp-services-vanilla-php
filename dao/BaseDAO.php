@@ -5,19 +5,19 @@
  */
 
 class BaseDAO {
-	
+
     /**
-	 * @var PDO $da 
-	 */
-	protected $da;
+     * @var PDO $da
+     */
+    protected $da;
     /**
-	 * @var string $tableName 
-	 */
-	protected $tableName;
+     * @var string $tableName
+     */
+    protected $tableName;
  
     /**
     * Constructor
-	* @param PDO $da 
+    * @param PDO $da
     */
     function BaseDAO( & $da ) {
         $this->da = $da;
@@ -27,7 +27,7 @@ class BaseDAO {
      * Close connection
      */
     function __destruct() {
-    	$this->da = null;
+        $this->da = null;
     }     
 
 }

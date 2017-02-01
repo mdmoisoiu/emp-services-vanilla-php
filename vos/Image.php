@@ -5,12 +5,12 @@
  */
 
 class Image {
-	
-	public $id = 0;
-	public $fileName = '';
-	public $fileData = null; // ByteArray
-	public $employeeId = 0;
-	
+
+    public $id = 0;
+    public $fileName = '';
+    public $fileData = null; // ByteArray
+    public $employeeId = 0;
+
 }
 
 ?>
