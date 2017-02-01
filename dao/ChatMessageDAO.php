@@ -1,7 +1,9 @@
 <?php
 /**
- * ChatMessageDAO.php
  * @author Matei Moisoiu
+ *
+ * ChatMessageDAO.php
+ *
  */
 
 

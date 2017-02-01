@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * ChatMessage.php
  * VO Class
- * @author Matei Moisoiu
+ *
  */
 
 class ChatMessage {

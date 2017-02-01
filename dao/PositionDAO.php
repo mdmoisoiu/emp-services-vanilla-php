@@ -1,7 +1,9 @@
 <?php
 /**
- * PositionDAO.php
  * @author Matei Moisoiu
+ *
+ * PositionDAO.php
+ *
  */
 
 include_once('BaseDAO.php');

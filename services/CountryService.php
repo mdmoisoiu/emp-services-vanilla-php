@@ -1,7 +1,9 @@
 <?php
 /**
- * CountryService.php
  * @author Matei Moisoiu
+ *
+ * CountryService.php
+ *
  */
 
 include_once('BaseService.php');

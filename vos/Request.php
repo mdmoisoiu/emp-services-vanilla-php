@@ -1,9 +1,11 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * Request.php
  * Util to obtain information abbout HTTP request
  * Class common to all applications
- * @author Matei Moisoiu
+ *
  */
 
 class Request {

@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * Position.php
  * VO Class
- * @author Matei Moisoiu
+ *
  */
 
 class Position {

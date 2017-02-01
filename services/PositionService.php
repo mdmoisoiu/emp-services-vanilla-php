@@ -1,7 +1,9 @@
 <?php
 /**
- * PositionService.php
  * @author Matei Moisoiu
+ *
+ * PositionService.php
+ *
  */
 
 include_once('BaseService.php');

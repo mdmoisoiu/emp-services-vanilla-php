@@ -1,8 +1,10 @@
 <?php
 
 /**
- * Class LogManager
  * @author Matei Moisoiu
+ *
+ * Class LogManager
+ *
  */
 
 class LogManager {

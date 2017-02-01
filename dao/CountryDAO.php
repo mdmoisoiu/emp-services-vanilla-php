@@ -1,7 +1,8 @@
 <?php
 /**
- * CountryDAO.php
  * @author Matei Moisoiu
+ * CountryDAO.php
+ *
  */
 
 include_once('BaseDAO.php');

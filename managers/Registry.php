@@ -1,7 +1,9 @@
 <?php
 /**
- * Registry
  * @author Matei Moisoiu
+ *
+ * Registry
+ *
  */
 
 include_once('Registry.php');

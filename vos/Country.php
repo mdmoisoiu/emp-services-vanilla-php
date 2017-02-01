@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * Country.php
  * VO Class
- * @author Matei Moisoiu
+ *
  */
 
 class Country {

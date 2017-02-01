@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * Image.php
  * VO Class
- * @author Matei Moisoiu
+ *
  */
 
 class Image {

@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * BaseService.php
  * Base class to all AMF Services
- * @author Matei Moisoiu
+ *
  */
 
 include_once('Registry.php');

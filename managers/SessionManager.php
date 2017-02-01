@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * SessionManager.php
  * Class common to all applications
- * @author Matei Moisoiu
+ *
  */
 
 include_once('SessionVariables.php');

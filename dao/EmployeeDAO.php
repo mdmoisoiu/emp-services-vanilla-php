@@ -1,7 +1,9 @@
 <?php
 /**
- * EmployeeDAO.php
  * @author Matei Moisoiu
+ *
+ * EmployeeDAO.php
+ *
  */
 
 include_once('BaseDAO.php');

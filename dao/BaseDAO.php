@@ -1,8 +1,10 @@
 <?php
 /**
+ * @author Matei Moisoiu
+ *
  * BaseDAO.php
  * Base class to all DAOs
- * @author Matei Moisoiu
+ *
  */
 
 class BaseDAO {

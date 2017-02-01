@@ -1,7 +1,9 @@
 <?php
 /**
- * SessionService.php
  * @author Matei Moisoiu
+ *
+ * SessionService.php
+ *
  */
 
 include_once('User.php');
