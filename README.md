@@ -11,7 +11,7 @@ This was my setup in the period when I was creating common AMFPHP backend servic
 3. Update "config.php" to match your checkout path and your url in local apache setup
 
 ## Functionality
-#####The backend will expose the following functionality( per entity) :**
+#####The backend will expose the following functionality( per entity) :
 
 ####Country:
 	- get countries list
@@ -32,9 +32,12 @@ This was my setup in the period when I was creating common AMFPHP backend servic
 	- get positions list
 	- get vacant positions list
 	- get position by id
+	
 	- reserve position id
-	- add position 
+	- add position
+	 
 	- update position
 	- set position employee
 	- remove position employee
+	
 	- delete employee
