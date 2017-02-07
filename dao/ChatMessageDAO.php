@@ -68,7 +68,7 @@ class ChatMessageDAO extends BaseDAO {
                             ed_chat as chat
                         JOIN app_user as usr ON chat.user_id=usr.id
                         %s
-                        ORDER BY chat.id DESC
+                        ORDER BY chat.id ASC
                         %s",
                         $where,
                         $limit
