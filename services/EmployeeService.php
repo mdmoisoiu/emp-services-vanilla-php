@@ -1,7 +1,5 @@
 <?php
 /**
- * @author Matei Moisoiu
- *
  * EmployeeService.php
  *
  */
@@ -9,6 +7,8 @@
 include_once('BaseService.php');
 
 include_once('EmployeeDAO.php');
+include_once('PositionDAO.php');
+include_once('ImageDAO.php');
 
 include_once('UserRoles.php');
 
@@ -23,16 +23,16 @@ class EmployeeService extends BaseService {
      * @var array
      */
     public static $protectedMethods = array(
-            "getEmployees",
-            "getEmployee",
-            "saveEmployee",
+        "getEmployees",
+        "getEmployee",
+        "saveEmployee",
     );
 
     /**
      * function that use authentication plugin to get accepted roles for each function
      * @param String $methodName
      * @return array
-    */
+     */
     public function _getMethodRoles($methodName) {
         if (in_array($methodName, self::$protectedMethods)) {
             return array(UserRoles::$BASIC_USER);
@@ -60,8 +60,8 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "employees" => $employees
+            "result" => $result,
+            "employees" => $employees
         );
     }
 
@@ -83,8 +83,8 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "employeesNumber" => $employeesNumber
+            "result" => $result,
+            "employeesNumber" => $employeesNumber
         );
     }
 
@@ -107,8 +107,8 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "employee" => $employee
+            "result" => $result,
+            "employee" => $employee
         );
     }
 
@@ -129,8 +129,8 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "employeeId" => $employeeId
+            "result" => $result,
+            "employeeId" => $employeeId
         );
     }
 
@@ -145,7 +145,6 @@ class EmployeeService extends BaseService {
         $result = 0;
         try {
             $employeeDAO = Registry::get(EmployeeDAO::$REGISTRY_KEY);
-            $imageDAO = Registry::get(ImageDAO::$REGISTRY_KEY);
 
             if($employeeDAO->checkIfEmployeeExists($employee->id)){
                 $employeeDAO->updateEmployee($employee);
@@ -153,13 +152,7 @@ class EmployeeService extends BaseService {
                 $employeeDAO->insertEmployee($employee);
             }
 
-            $images = $imageDAO->getImages(null, $employee->id);
-            foreach ($images as $image){
-                if($image->id!=$employee->imageId){
-                    unlink(IMAGES_DIR.$image->id.'_'.$image->fileName);
-                    $imageDAO->deleteImage($image->id);
-                }
-            }
+            $this->deleteAllEmployeeImages($employee, false);
 
             $result = 1;
         } catch (Exception $er){
@@ -167,8 +160,8 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "employee" => $employee
+            "result" => $result,
+            "employee" => $employee
         );
     }
 
@@ -197,9 +190,9 @@ class EmployeeService extends BaseService {
         }
 
         return (object) array(
-                "result" => $result,
-                "image" => $image,
-                "imageUrl" => $imageUrl
+            "result" => $result,
+            "image" => $image,
+            "imageUrl" => $imageUrl
         );
     }
 
@@ -210,18 +203,27 @@ class EmployeeService extends BaseService {
      */
     public function deleteEmployee($employeeId){
         /* @var $employeeDAO EmployeeDAO */
+        /* @var $positionDAO PositionDAO */
         $result = 0;
         try {
             $employeeDAO = Registry::get(EmployeeDAO::$REGISTRY_KEY);
+            $positionDAO = Registry::get(PositionDAO::$REGISTRY_KEY);
+
+            $employee = $employeeDAO->getEmployeeById($employeeId);
+            $this->deleteAllEmployeeImages($employee, true);
+
+            $positionDAO->removeEmployeeFromPositions($employeeId);
 
             $employeeDAO->deleteEmployee($employeeId);
+
             $result = 1;
         } catch (Exception $er){
             $this->logManager->logText($er);
         }
 
         return (object) array(
-                "result" => $result
+            "result" => $result,
+            "employee" => $employee
         );
     }
 
@@ -233,6 +235,26 @@ class EmployeeService extends BaseService {
         $string = preg_replace(array('~[^0-9a-z.]~i', '~[ -]+~'), ' ', $string);
 
         return trim($string, ' -');
+    }
+
+    /**
+     * @param $employee
+     * @param $includingCurrent flag that specify if the current image should be also deleted
+     */
+    protected function deleteAllEmployeeImages($employee, $includingCurrent) {
+        /* @var $imageDAO ImageDAO */
+        $imageDAO = Registry::get(ImageDAO::$REGISTRY_KEY);
+
+        $images = $imageDAO->getImages(null, $employee->id);
+
+        foreach ($images as $image) {
+            if ($image->id != $employee->imageId || $includingCurrent) {
+                if(is_file(IMAGES_DIR . $image->id . '_' . $image->fileName)){
+                    unlink(IMAGES_DIR . $image->id . '_' . $image->fileName);
+                }
+                $imageDAO->deleteImage($image->id);
+            }
+        }
     }
 }
 

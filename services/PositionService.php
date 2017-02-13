@@ -205,6 +205,7 @@ class PositionService extends BaseService {
         try {
             $positionDAO = Registry::get(PositionDAO::$REGISTRY_KEY);
 
+            $positionDAO->removePositionEmployee($positionId);
             $positionDAO->deletePosition($positionId);
             $result = 1;
         } catch (Exception $er){

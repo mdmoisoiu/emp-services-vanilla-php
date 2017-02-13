@@ -1,11 +1,8 @@
 <?php
 /**
- * @author Matei Moisoiu
- *
  * ChatMessageDAO.php
  *
  */
-
 
 include_once('BaseDAO.php');
 
@@ -16,13 +13,13 @@ class ChatMessageDAO extends BaseDAO {
     public static $REGISTRY_KEY = "ChatMessageDAO";
 
     /**
-    * Constructor
-    * @param PDO $da
-    */
+     * Constructor
+     * @param PDO $da
+     */
     function ChatMessageDAO( & $da ) {
         parent::BaseDAO($da);
     }
-        
+
     /**
      *
      * @param int $id
@@ -38,9 +35,9 @@ class ChatMessageDAO extends BaseDAO {
         }
         return $chatMessage;
     }
-    
+
     /**
-     * 
+     *
      * @param int $id
      * @return array of ChatMessage
      */
@@ -59,19 +56,19 @@ class ChatMessageDAO extends BaseDAO {
 
 
         $sql = sprintf("SELECT 
-                            chat.id as id,
-                            chat.user_id as user_id,
-                            CONCAT(usr.first_name, ' ', usr.last_name) as user_name,
-                            chat.message as message,
-                            chat.date_time as date_time
-                        FROM 
-                            ed_chat as chat
-                        JOIN app_user as usr ON chat.user_id=usr.id
-                        %s
-                        ORDER BY chat.id ASC
-                        %s",
-                        $where,
-                        $limit
+    						chat.id as id,
+    						chat.user_id as user_id,
+    						CONCAT(usr.first_name, ' ', usr.last_name) as user_name,
+    						chat.message as message,
+    						chat.date_time as date_time
+						FROM 
+    						ed_chat as chat
+    					JOIN app_user as usr ON chat.user_id=usr.id
+						%s
+    					ORDER BY chat.id ASC
+    					%s",
+            $where,
+            $limit
         );
         $rows = $this->da->query($sql)->fetchAll();
         $chatEntries = array();
@@ -88,7 +85,7 @@ class ChatMessageDAO extends BaseDAO {
 
         return $chatEntries;
     }
-    
+
     /**
      *
      * @param ChatMessage $chatMessage
@@ -96,18 +93,18 @@ class ChatMessageDAO extends BaseDAO {
      */
     public function insertChatMessage(&$chatMessage){
         $sql = sprintf("INSERT INTO
-                            ed_chat
-                         (
-                            user_id,
-                            message,
-                            date_time
-                        )
-                        VALUES
-                        (
-                            %s,
-                            %s,
-                            NOW()
-                        )",
+							ed_chat
+						 (
+							user_id,
+							message,
+    						date_time
+						)
+						VALUES
+						(
+							%s,
+							%s,
+    						NOW()
+						)",
             $this->da->quote($chatMessage->userId),
             $this->da->quote($chatMessage->message)
         );

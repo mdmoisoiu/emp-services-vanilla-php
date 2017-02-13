@@ -236,12 +236,14 @@ class EmployeeDAO extends BaseDAO {
      */
     public function deleteEmployee($valueId){
         $sql = sprintf("DELETE FROM
-                            ed_employee
-                        WHERE 
-                            id=%s",
-            $this->da->quote($valueId)
+    						ed_employee
+    					WHERE 
+    						id=:id"
         );
-        $res = $this->da->exec($sql);
+        $statement = $this->da->prepare($sql);
+        $statement->bindParam(":id", $valueId, PDO::PARAM_INT);
+        $res = $statement->execute();
+
         return $res;
     }   
 

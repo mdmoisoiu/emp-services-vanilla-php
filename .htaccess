@@ -1,0 +1,10 @@
+php_value memory_limit 1024M
+php_value post_max_size 128M
+php_value upload_max_filesize 128M
+php_value max_execution_time 1200
+
+<IfModule mod_headers.c>
+	Header set Access-Control-Allow-Origin "*"
+	Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS, LOGIN"
+	Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+</IfModule>

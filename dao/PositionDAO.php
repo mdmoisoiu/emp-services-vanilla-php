@@ -279,7 +279,7 @@ class PositionDAO extends BaseDAO {
         $res = $statement->execute();
         return $res;
     }
-    
+
     /**
      *
      * @param int $positionId
@@ -292,6 +292,23 @@ class PositionDAO extends BaseDAO {
                     position_id=:positionId";
         $statement = $this->da->prepare($sql);
         $statement->bindParam(":positionId", $positionId, PDO::PARAM_INT);
+
+        $res = $statement->execute();
+        return $res;
+    }
+
+    /**
+     *
+     * @param int $employeeId
+     * @return boolean
+     */
+    public function removeEmployeeFromPositions($employeeId){
+        $sql = "DELETE FROM
+                    ed_position_has_employee
+                WHERE
+                    employee_id=:employeeId";
+        $statement = $this->da->prepare($sql);
+        $statement->bindParam(":employeeId", $employeeId, PDO::PARAM_INT);
 
         $res = $statement->execute();
         return $res;
