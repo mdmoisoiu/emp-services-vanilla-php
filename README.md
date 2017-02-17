@@ -1,7 +1,7 @@
 ## About
 
 This is the vanilla PHP version of my pet project "Employee Directory".<br/>
-It contains a set or entities that expose CRUD functionality over HTTP.<br/>
+It contains a set of entities that expose CRUD functionality over HTTP.<br/>
 This was my setup in the period when I was creating common AMFPHP backend services for both Flex and Angular.
 
 ## Setup

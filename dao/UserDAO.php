@@ -101,7 +101,7 @@ class UserDAO extends BaseDAO {
         if ($row) {
             return $row['id'];
         }
-        return 1;
+        return null;
     }
 }
 ?>

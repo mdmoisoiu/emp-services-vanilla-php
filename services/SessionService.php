@@ -58,20 +58,25 @@ class SessionService extends BaseService {
     public function login($loginData){
         $userDAO = Registry::get(UserDAO::$REGISTRY_KEY);
         $userId = $userDAO->getUserIdByCredentials($loginData->username, $loginData->password);
+        $result = 0;
         if($userId>0){
             $this->sessionManager->setUserId($userId);
             $user = $userDAO->getUserById($userId);
 
-            if (class_exists('AmfphpAuthentication')) {
-                AmfphpAuthentication::addRole(UserRoles::$BASIC_USER);
-                if($user && $user->role){
-                    AmfphpAuthentication::addRole($user->role);
+            if($user){
+                if (class_exists('AmfphpAuthentication')) {
+                    AmfphpAuthentication::addRole(UserRoles::$BASIC_USER);
+                    if($user->role){
+                        AmfphpAuthentication::addRole($user->role);
+                    }
                 }
+
+                $result = 1;
             }
         }
 
         return (object) array(
-            "result" => 1,
+            "result" => $result,
             "userId" => $userId
         );
     }
